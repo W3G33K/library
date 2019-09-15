@@ -28,5 +28,8 @@
 	"bugs": {
 		"url": "https://github.com/W3G33K/library/issues"
 	},
-	"homepage": "https://github.com/W3G33K/library#readme"
+	"homepage": "https://github.com/W3G33K/library#readme",
+	"dependencies": {
+		"express": "^4.17.1"
+	}
 }
