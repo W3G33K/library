@@ -1,0 +1,11 @@
+/*
+ * This file is required by Microsoft VSCode to ensure that NodeJS types and keywords are included in VSCode's intellisense suggestions.
+ * https://github.com/Microsoft/vscode/issues/24977
+*/
+{
+	"typeAcquisition": {
+		"include": [
+			"node"
+		]
+	}
+}

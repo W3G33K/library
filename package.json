@@ -1,0 +1,32 @@
+{
+	"name": "library",
+	"version": "0.0.1",
+	"description": "Simple yet powerful library management system that gives you access to your entire book catalog, anywhere, anytime.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/W3G33K/library.git"
+	},
+	"keywords": [
+		"book",
+		"books",
+		"catalog",
+		"library",
+		"management",
+		"system"
+	],
+	"author": {
+		"name": "Ryan K. Clark",
+		"email": "mail.w3geek@gmail.com",
+		"url": "https://twitter.com/W3Geek"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/W3G33K/library/issues"
+	},
+	"homepage": "https://github.com/W3G33K/library#readme"
+}
