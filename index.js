@@ -1,9 +1,20 @@
+/* @imports */
 let messages = require("./resources/message-bundle.json");
 let package = require("./package.json");
+
+let chalk = require("chalk");
+let debug = require("debug");
 let express = require("express");
+let morgan = require("morgan");
 
+/* @globals */
 let app = express();
+let logger = debug("library:app");
 
+/* @middleware */
+app.use(morgan("dev"));
+
+/* @routes */
 app.get("/*", function(request, response) {
 	response.send(`
 		<!DOCTYPE html>
@@ -21,5 +32,5 @@ app.get("/*", function(request, response) {
 });
 
 app.listen(3000, function() {
-	console.info(messages.app.listen);
+	logger(chalk.green(messages.app.listen));
 });
