@@ -3,9 +3,17 @@
 	<head>
 		<meta charset="UTF-8"/>
 		<title><%= title %></title>
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+		<link type="text/css" rel="stylesheet" href="css/styles.css"/>
 	</head>
 	<body>
 		<h1><%= title %></h1>
-		<p><%= description %></p>
+		<p id="desc">
+			<%= description %>
+		</p>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/greet.js"></script>
 	</body>
 </html>

@@ -10,19 +10,28 @@ let path = require("path");
 
 /* @globals */
 const VIEW_ENGINE = "ejs";
-const VIEW_ENGINE_DIR = path.resolve(__dirname, "./views");
+
+const NPM_MODULES_DIR = path.resolve(__dirname, "./node_modules/");
+const BOOTSTRAP_PUBLIC_DIR = path.resolve(NPM_MODULES_DIR, "./bootstrap/dist/");
+const JQUERY_PUBLIC_DIR = path.resolve(NPM_MODULES_DIR, "./jquery/dist/");
+const PUBLIC_DIR = path.resolve(__dirname, "./webapp/");
+const VIEW_DIR = path.resolve(__dirname, "./views");
 
 let app = express();
 let log = debug("library:app");
 
 app.set("view engine", VIEW_ENGINE);
-app.set("views", VIEW_ENGINE_DIR);
+app.set("views", VIEW_DIR);
 
 /* @middleware */
+app.use(express.static(PUBLIC_DIR));
+app.use(express.static(BOOTSTRAP_PUBLIC_DIR));
+app.use("/js", express.static(JQUERY_PUBLIC_DIR));
 app.use(morgan("dev"));
 
 /* @routes */
-app.get("/*", function(request, response) {
+app.get("/", function(request, response) {
+	log(chalk.green(messages.onrequest.get));
 	let title = `${package.name}-${package.version}`,
 		description = package.description;
 	response.render("index", {

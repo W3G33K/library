@@ -1,5 +1,8 @@
 {
 	"app": {
 		"listen": "Server is open for e-business..."
+	},
+	"onrequest": {
+		"get": "Handling GET request..."
 	}
 }
