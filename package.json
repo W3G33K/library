@@ -2,10 +2,10 @@
 	"name": "library",
 	"version": "0.0.1",
 	"description": "Simple yet powerful library management system that gives you access to your entire book catalog, anywhere, anytime.",
-	"main": "index.js",
+	"main": "app.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "set DEBUG=* & node index.js"
+		"start": "set DEBUG=* & node app.js"
 	},
 	"repository": {
 		"type": "git",
@@ -32,6 +32,7 @@
 	"dependencies": {
 		"chalk": "^2.4.2",
 		"debug": "^4.1.1",
+		"ejs": "^2.7.1",
 		"express": "^4.17.1",
 		"morgan": "^1.9.1"
 	}
