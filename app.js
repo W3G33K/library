@@ -1,5 +1,5 @@
 /* @imports */
-let messages = require("./resources/message-bundle.json");
+let messages = require("./src/message-bundle.json");
 let package = require("./package.json");
 
 let chalk = require("chalk");
@@ -11,22 +11,25 @@ let path = require("path");
 /* @globals */
 const VIEW_ENGINE = "ejs";
 
-const NPM_MODULES_DIR = path.resolve(__dirname, "./node_modules/");
-const BOOTSTRAP_PUBLIC_DIR = path.resolve(NPM_MODULES_DIR, "./bootstrap/dist/");
-const JQUERY_PUBLIC_DIR = path.resolve(NPM_MODULES_DIR, "./jquery/dist/");
-const PUBLIC_DIR = path.resolve(__dirname, "./webapp/");
-const VIEW_DIR = path.resolve(__dirname, "./views");
+const MODULES_DIR = path.resolve(__dirname, "./node_modules/");
+const BOOTSTRAP_WEBAPP_DIR = path.resolve(MODULES_DIR, "./bootstrap/dist/");
+const JQUERY_WEBAPP_DIR = path.resolve(MODULES_DIR, "./jquery/dist/");
+const WEBAPP_DIR = path.resolve(__dirname, "./webapp/");
+
+const SRC_DIR = path.resolve(__dirname, "./src/");
+const APP_DIR = path.resolve(__dirname, SRC_DIR, "./app/");
+const VIEWS_DIR = path.resolve(__dirname, APP_DIR, "./views");
 
 let app = express();
 let log = debug("library:app");
 
 app.set("view engine", VIEW_ENGINE);
-app.set("views", VIEW_DIR);
+app.set("views", VIEWS_DIR);
 
 /* @middleware */
-app.use(express.static(PUBLIC_DIR));
-app.use(express.static(BOOTSTRAP_PUBLIC_DIR));
-app.use("/js", express.static(JQUERY_PUBLIC_DIR));
+app.use(express.static(WEBAPP_DIR));
+app.use(express.static(BOOTSTRAP_WEBAPP_DIR));
+app.use("/js", express.static(JQUERY_WEBAPP_DIR));
 app.use(morgan("dev"));
 
 /* @routes */
