@@ -8,9 +8,7 @@ let express = require("express");
 let morgan = require("morgan");
 let path = require("path");
 
-/* @globals */
-const VIEW_ENGINE = "ejs";
-
+/* @constants */
 const MODULES_DIR = path.resolve(__dirname, "./node_modules/");
 const BOOTSTRAP_WEBAPP_DIR = path.resolve(MODULES_DIR, "./bootstrap/dist/");
 const JQUERY_WEBAPP_DIR = path.resolve(MODULES_DIR, "./jquery/dist/");
@@ -20,6 +18,10 @@ const SRC_DIR = path.resolve(__dirname, "./src/");
 const APP_DIR = path.resolve(__dirname, SRC_DIR, "./app/");
 const VIEWS_DIR = path.resolve(__dirname, APP_DIR, "./views");
 
+const ENV_PORT = process.env.port || 3000;
+const VIEW_ENGINE = "ejs";
+
+/* @globals */
 let app = express();
 let log = debug("library:app");
 
@@ -43,6 +45,6 @@ app.get("/", function(request, response) {
 	});
 });
 
-app.listen(3000, function() {
+app.listen(ENV_PORT, function() {
 	log(chalk.green(messages.app.listen));
 });
