@@ -1,4 +1,38 @@
-body {
-	background-color: #9932cc;
-	color: #ffffff;
+.album .card, .album svg {
+	border-top-right-radius: 1.125rem;
+}
+
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+}
+
+.jumbotron {
+	background-color: #ffffff;
+	margin-bottom: 0;
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+}
+
+.jumbotron p:last-child {
+	margin-bottom: 0;
+}
+
+.jumbotron-heading {
+	font-weight: 300;
+}
+
+.jumbotron .container {
+	max-width: 40rem;
+}
+
+@media (min-width: 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+
+	.jumbotron {
+		padding-top: 6rem;
+		padding-bottom: 6rem;
+	}
 }

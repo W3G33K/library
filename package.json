@@ -42,11 +42,11 @@
 		"nodemon": "^1.19.2"
 	},
 	"nodemonConfig": {
-			"restartable": "rs",
-			"delay": 2500,
-			"env": {
-				"node_env": "development",
-				"port": 8080
-			}
+		"restartable": "rs",
+		"delay": 2500,
+		"env": {
+			"node_env": "development",
+			"port": 8080
+		}
 	}
 }
