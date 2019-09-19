@@ -1,8 +1,14 @@
 {
 	"app": {
-		"listen": "Server is open for e-business..."
+		"open": "Server is open for e-business...",
+		"listen": "Listening on port"
 	},
 	"onrequest": {
-		"get": "Handling GET request..."
+		"get": "Handling GET request...",
+		"books": {
+			"book": {
+				"get": "Handling GET request for Book with a unique identifier of"
+			}
+		}
 	}
 }
