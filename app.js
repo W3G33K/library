@@ -1,8 +1,8 @@
 require("sexy-require");
 
 /* @imports */
-let messages = require("$src/message-bundle.json");
-let package = require("./package.json");
+let config = require("$src/config.json");
+let messages = require("$src/messages.json");
 
 let bookRouter = require("$app/routes/book.routes");
 
@@ -42,10 +42,11 @@ app.use(morgan("dev"));
 app.use("/books", bookRouter);
 app.get("/", function(request, response) {
 	log(chalk.green(messages.onrequest.get));
-	let title = `${package.name}-${package.version}`,
-		description = package.description;
+	let {title, separator, description} = config;
 	response.render("index.view.ejs", {
 		title: title,
+		separator: separator,
+		subtitle: "Home",
 		description: description
 	});
 });

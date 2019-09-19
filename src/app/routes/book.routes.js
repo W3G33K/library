@@ -1,6 +1,7 @@
 module.exports = (function() {
 	/* @imports */
-	let messages = require("$src/message-bundle.json");
+	let config = require("$src/config.json");
+	let messages = require("$src/messages.json");
 
 	let chalk = require("chalk");
 	let debug = require("debug");
@@ -17,7 +18,12 @@ module.exports = (function() {
 	router.route("/")
 		.get(function(request, response) {
 			log(chalk.green(messages.onrequest.get));
-			response.send([request.protocol, SCHEME_QUALIFIER, request.hostname, request.originalUrl].join(""));
+			let {title, separator} = config;
+			response.render("books/books.view.ejs", {
+				title: title,
+				separator: separator,
+				subtitle: "Books"
+			});
 		});
 
 	router.route("/:id")
