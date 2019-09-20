@@ -4,7 +4,7 @@
 	"description": "Simple yet powerful library management system that gives you access to your entire book catalog, anywhere, anytime.",
 	"main": "app.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"test": "jasmine",
 		"start": "set DEBUG=* & nodemon app.js"
 	},
 	"repository": {
@@ -40,6 +40,8 @@
 		"sexy-require": "^1.1.2"
 	},
 	"devDependencies": {
+		"jasmine": "^3.4.0",
+		"jasmine-spec-reporter": "^4.2.1",
 		"nodemon": "^1.19.2"
 	},
 	"nodemonConfig": {
