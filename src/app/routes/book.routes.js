@@ -7,9 +7,6 @@ module.exports = (function() {
 	let debug = require("debug");
 	let express = require("express");
 
-	/* @constants */
-	const SCHEME_QUALIFIER = "://";
-
 	/* @globals */
 	let log = debug("library:app.book.routes");
 	let router = express.Router();
@@ -19,17 +16,25 @@ module.exports = (function() {
 		.get(function(request, response) {
 			log(chalk.green(messages.onrequest.get));
 			let {title, separator} = config;
-			response.render("books/books.view.ejs", {
+			response.render("books/index.view.ejs", {
 				title: title,
 				separator: separator,
 				subtitle: "Books"
 			});
 		});
 
-	router.route("/:id")
+	router.route("/book/:id")
 		.get(function(request, response) {
-			log(chalk.green(messages.onrequest.books.book.get), chalk.cyan(request.params.id));
-			response.send([request.protocol, SCHEME_QUALIFIER, request.hostname, request.originalUrl].join(""));
+			let {title, separator} = config;
+			let id = request.params.id;
+
+			log(chalk.green(messages.onrequest.books.book.get), chalk.cyan(id));
+			response.render("books/book.view.ejs", {
+				title: title,
+				separator: separator,
+				subtitle: "Book Title",
+				id: id
+			});
 		});
 
 	return router;

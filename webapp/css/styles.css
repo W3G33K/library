@@ -1,3 +1,12 @@
+dl dd {
+	border-bottom: 1px solid #dee2e6;
+	padding-bottom: 1rem;
+}
+
+dl dt::after {
+	content: ":"
+}
+
 .album .card, .album svg {
 	border-top-right-radius: 1.125rem;
 }

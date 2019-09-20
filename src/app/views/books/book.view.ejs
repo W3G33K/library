@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<title><%= subtitle %><%= separator %><%= title %></title>
+		<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
+		<link type="text/css" rel="stylesheet" href="/css/styles.css"/>
+	</head>
+
+	<body>
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+				<div class="container">
+					<a href="#" class="navbar-brand">
+						<strong><%= title %></strong>
+					</a>
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item">
+							<a href="/" class="nav-link">Home</a>
+						</li>
+						<li class="nav-item">
+							<a href="/books" class="nav-link">Books</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+		<main>
+			<section class="py-5 bg-light">
+				<div class="container">
+					<div class="row">
+						<header class="col-lg-12 border-bottom mb-4">
+							<h2><%= title %></h2>
+						</header>
+					</div>
+					<div class="row">
+						<div class="col-lg-4">
+							<svg class="bd-placeholder-img rounded" width="100%" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false">
+								<title><%= title %></title>
+								<rect fill="#343a40" width="100%" height="100%"/>
+								<text fill="#eceeef" dy="0.3em" x="50%" y="50%"><%= title %></text>
+							</svg>
+						</div>
+	
+						<div class="col-lg-8">
+							<dl>
+								<dt>UUID</dt>
+								<dd><%= id %></dd>
+
+								<dt>Title</dt>
+								<dd><%= title %></dd>
+
+								<dt>Authors</dt>
+								<dd>Lorem Ipsum, Dolor S. Amet, Consectetur A. Elit</dd>
+
+								<dt>ISBN-10</dt>
+								<dd>0-5182-6960-4</dd>
+
+								<dt>ISBN-13</dt>
+								<dd>978-2-4596-2932-2</dd>
+
+								<dt>Series</dt>
+								<dd>My Book Series</dd>
+
+								<dt>Print Length</dt>
+								<dd>It's Over 9000 Pages!</dd>
+
+								<dt>Publisher</dt>
+								<dd>Some Book Publisher, LLC.</dd>
+
+								<dt>Publication Date</dt>
+								<dd>January 1, 1970</dd>
+
+								<dt>Language</dt>
+								<dd>English</dd>
+
+								<dt>Summary</dt>
+								<dd>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+									Ac tortor vitae purus faucibus ornare suspendisse sed nisi lacus. Augue neque gravida in fermentum et. Ut aliquam purus sit amet
+									luctus venenatis lectus magna fringilla. Enim nulla aliquet porttitor lacus luctus accumsan. Nullam ac tortor vitae purus faucibus
+									ornare. Odio tempor orci dapibus ultrices in. Fringilla urna porttitor rhoncus dolor purus non enim praesent elementum. Egestas
+									maecenas pharetra convallis posuere morbi leo urna molestie at. Ultrices vitae auctor eu augue ut. Sit amet purus gravida quis
+									blandit turpis cursus. Ac placerat vestibulum lectus mauris ultrices eros in. Eget sit amet tellus cras adipiscing enim eu turpis egestas.
+									Eget sit amet tellus cras adipiscing enim. Ornare quam viverra orci sagittis eu volutpat. Egestas pretium aenean pharetra magna ac placerat
+									vestibulum lectus. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. Morbi blandit cursus risus at ultrices.
+									Vitae nunc sed velit dignissim sodales ut eu sem integer. Phasellus vestibulum lorem sed risus ultricies. Id consectetur purus ut
+									faucibus pulvinar elementum integer enim neque. Lorem ipsum dolor sit amet consectetur adipiscing. Egestas erat imperdiet sed euismod.
+									Sodales neque sodales ut etiam sit amet nisl purus. Cum sociis natoque penatibus et magnis dis parturient. Aliquam ut porttitor leo a
+									diam. Volutpat lacus laoreet non curabitur gravida arcu ac tortor. Pellentesque habitant morbi tristique senectus et netus et
+									malesuada. Scelerisque fermentum dui faucibus in ornare. Orci dapibus ultrices in iaculis nunc sed augue lacus viverra. Pulvinar
+									etiam non quam lacus suspendisse faucibus interdum posuere lorem. Felis eget velit aliquet sagittis id consectetur purus ut faucibus.
+								</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<script type="text/javascript" src="/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	</body>
+</html>
