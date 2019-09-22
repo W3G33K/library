@@ -2,6 +2,7 @@
 	"name": "library",
 	"version": "0.0.1",
 	"description": "Simple yet powerful library management system that gives you access to your entire book catalog, anywhere, anytime.",
+	"private": true,
 	"main": "app.js",
 	"scripts": {
 		"test": "jasmine",
