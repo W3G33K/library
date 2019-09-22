@@ -1,13 +1,12 @@
 {
-	"app": {
-		"open": "Server is open for e-business...",
-		"listen": "Listening on port"
-	},
-	"onrequest": {
-		"get": "Handling GET request...",
-		"books": {
-			"book": {
-				"get": "Handling GET request for Book with a unique identifier of"
+	"server": {
+		"onlisten": "Server {0} is open for e-business listening on port {1}...",
+		"onrequest": {
+			"get": "Handling GET request",
+			"books": {
+				"book": {
+					"get": "Handling GET request for Book with a ID {0}"
+				}
 			}
 		}
 	}

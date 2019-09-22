@@ -2,7 +2,7 @@ require("sexy-require");
 
 /* @imports */
 let config = require("$src/config.json");
-let messages = require("$src/messages.json");
+let ServerMessages = require("$app/messages/impl/server.messages");
 
 let bookRouter = require("$app/routes/book.routes");
 
@@ -22,15 +22,17 @@ const SRC_DIR = path.resolve(__dirname, "./src/");
 const APP_DIR = path.resolve(__dirname, SRC_DIR, "./app/");
 const VIEWS_DIR = path.resolve(__dirname, APP_DIR, "./views");
 
-const ENV_PORT = process.env.port || 3000;
+const ENV_PORT = process.env.port || "3000";
 const VIEW_ENGINE = "ejs";
 
 /* @globals */
-let log = debug("library:app");
+let log = debug("library:$app");
 let app = express();
 
 app.set("view engine", VIEW_ENGINE);
 app.set("views", VIEWS_DIR);
+
+let serverMessages = new ServerMessages();
 
 /* @middleware */
 app.use(express.static(WEBAPP_DIR));
@@ -41,7 +43,7 @@ app.use(morgan("dev"));
 /* @routes */
 app.use("/books", bookRouter);
 app.get("/", function(request, response) {
-	log(chalk.green(messages.onrequest.get));
+	log(chalk.green(serverMessages.messages["server.onrequest.get"]));
 	let {title, separator, description} = config;
 	response.render("index.view.ejs", {
 		title: title,
@@ -52,5 +54,5 @@ app.get("/", function(request, response) {
 });
 
 app.listen(ENV_PORT, function() {
-	log(chalk.green(messages.app.open), chalk.magenta(messages.app.listen), chalk.cyan(ENV_PORT));
+	log(chalk.green(serverMessages.messages["server.onlisten"]), chalk.cyan(ENV_PORT));
 });
