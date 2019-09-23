@@ -32,7 +32,7 @@ let log = debug("library:$app");
 let app = express();
 
 app.set("view engine", VIEW_ENGINE);
-app.set("views", VIEWS_DIR);
+app.set("views", [VIEWS_DIR]);
 
 /* @middleware */
 app.use(express.static(WEBAPP_DIR));
