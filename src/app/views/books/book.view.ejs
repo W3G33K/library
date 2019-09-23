@@ -1,8 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<meta name="application-name" content="<%= title %>"/>
 		<meta charset="UTF-8"/>
-		<title><%= subtitle %><%= separator %><%= title %></title>
+		<title>
+			<% if (typeof subtitle === "string" && subtitle.trim() !== "") { %>
+				<%= subtitle %>
+				<% if ((typeof separator === "string" && separator.trim() !== "") &&
+					   (typeof title === "string" && title.trim() !== "")) { %>
+						<%= separator + title %>
+				<% } else if (typeof title === "string" && title.trim() !== "") { %>
+					<%= " | " + title %>
+				<% } %>
+			<% } else { %>
+				<%= title %>
+			<% } %>
+		</title>
 		<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
 		<link type="text/css" rel="stylesheet" href="/css/styles.css"/>
 	</head>

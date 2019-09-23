@@ -2,7 +2,20 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8"/>
-		<title><%= subtitle %><%= separator %><%= title %></title>
+		<meta name="application-name" content="<%= title %>"/>
+		<title>
+			<% if (typeof subtitle === "string" && subtitle.trim() !== "") { %>
+				<%= subtitle %>
+				<% if ((typeof separator === "string" && separator.trim() !== "") &&
+					   (typeof title === "string" && title.trim() !== "")) { %>
+						<%= separator + title %>
+				<% } else if (typeof title === "string" && title.trim() !== "") { %>
+					<%= " | " + title %>
+				<% } %>
+			<% } else if (typeof title === "string" && title.trim() !== "") { %>
+				<%= title %>
+			<% } %>
+		</title>
 		<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
 		<link type="text/css" rel="stylesheet" href="/css/styles.css"/>
 	</head>
