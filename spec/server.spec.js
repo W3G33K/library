@@ -20,6 +20,7 @@ describe("library:$app/server", function() {
 
 		it("should return text/html", function(done) {
 			request.get(REQUEST_BASE_URI, function(error, response, body) {
+				expect(response.headers["content-type"]).toEqual("text/html; charset=utf-8");
 				expect(body).toContain("<title>Home :: Book Library</title>");
 				done();
 			});

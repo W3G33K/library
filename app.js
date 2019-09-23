@@ -2,7 +2,7 @@ require("sexy-require");
 
 /* @imports */
 let config = require("$src/config.json");
-let ServerMessages = require("$app/messages/impl/server.messages");
+let MessageClass = require("$app/messages/message.class");
 
 let bookRouter = require("$app/routes/book.routes");
 
@@ -26,13 +26,13 @@ const ENV_PORT = process.env.port || "3000";
 const VIEW_ENGINE = "ejs";
 
 /* @globals */
+let message = new MessageClass();
+
 let log = debug("library:$app");
 let app = express();
 
 app.set("view engine", VIEW_ENGINE);
 app.set("views", VIEWS_DIR);
-
-let serverMessages = new ServerMessages();
 
 /* @middleware */
 app.use(express.static(WEBAPP_DIR));
@@ -43,7 +43,7 @@ app.use(morgan("dev"));
 /* @routes */
 app.use("/books", bookRouter);
 app.get("/", function(request, response) {
-	log(chalk.green(serverMessages.messages["server.onrequest.get"]));
+	log(chalk.green(message.format("server.onrequest.get")));
 	let {title, separator, description} = config;
 	response.render("index.view.ejs", {
 		title: title,
@@ -54,5 +54,5 @@ app.get("/", function(request, response) {
 });
 
 app.listen(ENV_PORT, function() {
-	log(chalk.green(serverMessages.messages["server.onlisten"]), chalk.cyan(ENV_PORT));
+	log(chalk.green(message.format("server.onlisten", "server1", ENV_PORT)));
 });

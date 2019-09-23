@@ -1,11 +1,11 @@
 {
 	"server": {
-		"onlisten": "Server {0} is open for e-business listening on port {1}...",
+		"onlisten": "Server %s is open for e-business listening on port %s...",
 		"onrequest": {
 			"get": "Handling GET request",
 			"books": {
 				"book": {
-					"get": "Handling GET request for Book with a ID {0}"
+					"get": "Handling GET request for Book with a ID %s"
 				}
 			}
 		}

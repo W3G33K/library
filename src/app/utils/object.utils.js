@@ -12,7 +12,6 @@ module.exports = (function() {
 			if (flatObject.hasOwnProperty(flatPropertyName)) {
 				let key = ((typeof keyType === "string") 
 					? `${keyType}.${propertyName}.${flatPropertyName}` : `${propertyName}.${flatPropertyName}`);
-				log(chalk.red(`deflate.key ${key}`));
 				results[key] = flatObject[flatPropertyName];
 			}
 		}
@@ -32,7 +31,6 @@ module.exports = (function() {
 					} else {
 						let key = ((typeof keyType === "string") 
 							? `${keyType}.${propertyName}` : `${propertyName}`);
-						log(chalk.red(`flatten.key ${key}`));
 						results[key] = object[propertyName];
 					}
 				}

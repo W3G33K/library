@@ -10,9 +10,9 @@ module.exports = (function() {
 	let log = debug("library:$app/messages/messages.class");
 
 	return class {
-		constructor(type) {
-			this.type = type;
-			this.messages = ObjectUtils.flatten(messages[type], type);
+		constructor(keytype) {
+			let msgs = ObjectUtils.flatten(messages[keytype], keytype);
+			Object.assign(this, msgs);
 		}
 	};
 })();
