@@ -1,21 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta name="application-name" content="<%= title %>"/>
+		<meta name="application-name" content="<%= TagUtils.title(null, true) %>"/>
 		<meta charset="UTF-8"/>
-		<title>
-			<% if (typeof subtitle === "string" && subtitle.trim() !== "") { %>
-				<%= subtitle %>
-				<% if ((typeof separator === "string" && separator.trim() !== "") &&
-					   (typeof title === "string" && title.trim() !== "")) { %>
-						<%= separator + title %>
-				<% } else if (typeof title === "string" && title.trim() !== "") { %>
-					<%= " | " + title %>
-				<% } %>
-			<% } else { %>
-				<%= title %>
-			<% } %>
-		</title>
+		<%- TagUtils.title(subtitle) %>
 		<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
 		<link type="text/css" rel="stylesheet" href="/css/styles.css"/>
 	</head>
@@ -25,7 +13,7 @@
 			<nav class="navbar navbar-expand navbar-dark bg-dark shadow-sm">
 				<div class="container">
 					<a href="/" class="navbar-brand">
-						<strong><%= title %></strong>
+						<strong><%= TagUtils.title(null, true) %></strong>
 					</a>
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item">

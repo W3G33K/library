@@ -1,8 +1,8 @@
 require("sexy-require");
 
 /* @imports */
-let config = require("$src/config.json");
 let MessageClass = require("$app/messages/message.class");
+let TagUtils = require("$app/utils/tag.utils");
 
 let bookRouter = require("$app/routes/book.routes");
 
@@ -31,6 +31,8 @@ let message = new MessageClass();
 let log = debug("library:$app");
 let app = express();
 
+app.locals.TagUtils = TagUtils;
+
 app.set("view engine", VIEW_ENGINE);
 app.set("views", [VIEWS_DIR]);
 
@@ -44,12 +46,8 @@ app.use(morgan("dev"));
 app.use("/books", bookRouter);
 app.get("/", function(request, response) {
 	log(chalk.green(message.format("server.onrequest.get")));
-	let {title, separator, description} = config;
 	response.render("index.view.ejs", {
-		title: title,
-		separator: separator,
-		subtitle: "Home",
-		description: description
+		subtitle: "Home"
 	});
 });
 
