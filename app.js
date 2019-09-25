@@ -4,6 +4,7 @@ require("sexy-require");
 let MessageClass = require("$app/messages/message.class");
 let TagUtils = require("$app/utils/tag.utils");
 
+let adminRouter = require("$app/routes/admin.routes");
 let bookRouter = require("$app/routes/book.routes");
 
 let chalk = require("chalk");
@@ -43,6 +44,7 @@ app.use("/js", express.static(JQUERY_WEBAPP_DIR));
 app.use(morgan("dev"));
 
 /* @routes */
+app.use("/admin", adminRouter);
 app.use("/books", bookRouter);
 app.get("/", function(request, response) {
 	log(chalk.green(message.format("server.onrequest.get")));
