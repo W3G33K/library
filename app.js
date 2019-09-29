@@ -10,10 +10,16 @@ let bookRouter = require("$app/routes/book.routes");
 let chalk = require("chalk");
 let debug = require("debug");
 let express = require("express");
+let mongodb = require("mongodb");
 let morgan = require("morgan");
 let path = require("path");
 
 /* @constants */
+const DB_NAME = "BookLibrary";
+const DB_URL = "mongodb://localhost:27017";
+const ENV_PORT = process.env.port || "3000";
+const VIEW_ENGINE = "ejs";
+
 const MODULES_DIR = path.resolve(__dirname, "./node_modules/");
 const BOOTSTRAP_WEBAPP_DIR = path.resolve(MODULES_DIR, "./bootstrap/dist/");
 const JQUERY_WEBAPP_DIR = path.resolve(MODULES_DIR, "./jquery/dist/");
@@ -23,10 +29,8 @@ const SRC_DIR = path.resolve(__dirname, "./src/");
 const APP_DIR = path.resolve(__dirname, SRC_DIR, "./app/");
 const VIEWS_DIR = path.resolve(__dirname, APP_DIR, "./views");
 
-const ENV_PORT = process.env.port || "3000";
-const VIEW_ENGINE = "ejs";
-
 /* @globals */
+let MongoClient = mongodb.MongoClient;
 let message = new MessageClass();
 
 let log = debug("library:$app");
@@ -48,9 +52,29 @@ app.use("/admin", adminRouter);
 app.use("/books", bookRouter);
 app.get("/", function(request, response) {
 	log(chalk.green(message.format("server.onrequest.get")));
-	response.render("index.view.ejs", {
-		subtitle: "Home"
-	});
+	(async function () {
+		let client;
+		try {
+			client = await MongoClient.connect(DB_URL);
+			let db = client.db(DB_NAME);
+			let collection = await db.collection("books");
+			let cursor = collection.find()
+				.sort({_id: -1})
+				.limit(3);
+
+			let results = await cursor.toArray();
+			response.render("index.view.ejs", {
+				subtitle: "Home",
+				books: results
+			});
+		} catch(e) {
+			log(e);
+		} finally {
+			if (typeof client === "object" && client !== null) {
+				client.close();
+			}
+		}
+	})();
 });
 
 app.listen(ENV_PORT, function() {

@@ -26,7 +26,6 @@ module.exports = (function() {
 				let client;
 				try {
 					client = await MongoClient.connect(DB_URL);
-	
 					let db = client.db(DB_NAME);
 					let collection = await db.collection("books").insertMany(
 						[
@@ -64,7 +63,7 @@ module.exports = (function() {
 							}
 						]
 					);
-	
+
 					response.json(collection);
 				} catch(e) {
 					log(e);

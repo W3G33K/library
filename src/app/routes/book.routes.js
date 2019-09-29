@@ -5,8 +5,14 @@ module.exports = (function() {
 	let chalk = require("chalk");
 	let debug = require("debug");
 	let express = require("express");
+	let mongodb = require("mongodb");
+
+	/* @constants */
+	const DB_NAME = "BookLibrary";
+	const DB_URL = "mongodb://localhost:27017";
 
 	/* @globals */
+	let MongoClient = mongodb.MongoClient;
 	let message = new MessageClass();
 
 	let log = debug("library:$app/routes/book.routes");
@@ -16,9 +22,27 @@ module.exports = (function() {
 	router.route("/")
 		.get(function(request, response) {
 			log(chalk.green(message.format("server.onrequest.get")));
-			response.render("books/index.view.ejs", {
-				subtitle: "Books"
-			});
+			(async function () {
+				let client;
+				try {
+					client = await MongoClient.connect(DB_URL);
+					let db = client.db(DB_NAME);
+					let collection = await db.collection("books");
+					let cursor = collection.find();
+
+					let results = await cursor.toArray();
+					response.render("books/index.view.ejs", {
+						subtitle: "Books",
+						books: results
+					});
+				} catch(e) {
+					log(e);
+				} finally {
+					if (typeof client === "object" && client !== null) {
+						client.close();
+					}
+				}
+			})();
 		});
 
 	router.route("/book/:id")
