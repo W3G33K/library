@@ -27,6 +27,7 @@ describe("library:$app/messages/impl/server.messages", function() {
 			"server.onlisten": "Server %s is open for e-business listening on port %s...",
 			"server.onrequest.get": "Handling GET request",
 			"server.onrequest.books.book.get": "Handling GET request for Book with a ID %s",
+			"server.onrequest.users.user.get": "Handling GET request for User with a ID %s"
 		}));
 	});
 });

@@ -7,6 +7,11 @@
 				"book": {
 					"get": "Handling GET request for Book with a ID %s"
 				}
+			},
+			"users": {
+				"user": {
+					"get": "Handling GET request for User with a ID %s"
+				}
 			}
 		}
 	}

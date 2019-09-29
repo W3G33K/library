@@ -23,7 +23,7 @@ module.exports = (function() {
 	router.route("/")
 		.get(function(request, response) {
 			log(chalk.green(message.format("server.onrequest.get")));
-			(async function () {
+			(async function() {
 				let client;
 				try {
 					client = await MongoClient.connect(DB_URL);
@@ -50,7 +50,7 @@ module.exports = (function() {
 		.get(function(request, response) {
 			let id = request.params.id;
 			log(chalk.green(message.format("server.onrequest.books.book.get", id)));
-			(async function () {
+			(async function() {
 				let client;
 				try {
 					client = await MongoClient.connect(DB_URL);
