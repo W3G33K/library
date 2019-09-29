@@ -12,7 +12,8 @@ module.exports = (function() {
 	const DB_URL = "mongodb://localhost:27017";
 
 	/* @globals */
-	let MongoClient = mongodb.MongoClient;
+	let MongoClient = mongodb.MongoClient,
+		ObjectID = mongodb.ObjectID;
 	let message = new MessageClass();
 
 	let log = debug("library:$app/routes/book.routes");
@@ -49,10 +50,27 @@ module.exports = (function() {
 		.get(function(request, response) {
 			let id = request.params.id;
 			log(chalk.green(message.format("server.onrequest.books.book.get", id)));
-			response.render("books/book.view.ejs", {
-				subtitle: "Book Title",
-				id: id
-			});
+			(async function () {
+				let client;
+				try {
+					client = await MongoClient.connect(DB_URL);
+					let db = client.db(DB_NAME);
+					let collection = await db.collection("books");
+
+					let _id = new ObjectID(id);
+					let result = await collection.findOne({_id});
+					response.render("books/book.view.ejs", {
+						subtitle: result.title,
+						book: result
+					});
+				} catch(e) {
+					log(e);
+				} finally {
+					if (typeof client === "object" && client !== null) {
+						client.close();
+					}
+				}
+			})();
 		});
 
 	return router;
