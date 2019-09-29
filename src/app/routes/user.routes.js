@@ -24,7 +24,8 @@ module.exports = (function() {
 		.get(function(request, response) {
 			log(chalk.green(message.format("server.onrequest.get")));
 			response.json({
-				"message": "Currently viewing your user profile."
+				message: "Currently viewing your user profile.",
+				user: request.user || "undefined"
 			});
 		});
 
@@ -44,7 +45,9 @@ module.exports = (function() {
 
 	router.route("/user/register")
 		.post(function(request, response) {
-			response.json(request.body);
+			request.login(request.body, function() {
+				response.redirect("/users/user/profile");
+			});
 		});
 
 	return router;

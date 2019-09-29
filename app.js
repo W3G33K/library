@@ -1,6 +1,7 @@
 require("sexy-require");
 
 /* @imports */
+let initPassport = require("$app/authentication/passport");
 let MessageClass = require("$app/messages/message.class");
 let TagUtils = require("$app/utils/tag.utils");
 
@@ -9,12 +10,15 @@ let bookRouter = require("$app/routes/book.routes");
 let userRouter = require("$app/routes/user.routes");
 
 let bodyParser = require("body-parser");
+let cookieParser = require("cookie-parser");
 let chalk = require("chalk");
 let debug = require("debug");
 let express = require("express");
 let mongodb = require("mongodb");
 let morgan = require("morgan");
+let passport = require("passport");
 let path = require("path");
+let session = require("express-session");
 
 /* @constants */
 const DB_NAME = "BookLibrary";
@@ -46,7 +50,18 @@ app.set("views", [VIEWS_DIR]);
 /* @middleware */
 app.use(morgan("dev"));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({
+	extended: false
+}));
+
+app.use(cookieParser());
+app.use(session({
+	secret: "BookLibrary",
+	resave: false,
+	saveUninitialized: true,
+}));
+
+initPassport(app);
 
 app.use(express.static(WEBAPP_DIR));
 app.use(express.static(BOOTSTRAP_WEBAPP_DIR));
