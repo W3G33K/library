@@ -6,14 +6,14 @@ module.exports = (function() {
 	let debug = require("debug");
 	let express = require("express");
 	let mongodb = require("mongodb");
+	let passport = require("passport");
 
 	/* @constants */
 	const DB_NAME = "BookLibrary";
 	const DB_URL = "mongodb://localhost:27017";
 
 	/* @globals */
-	let MongoClient = mongodb.MongoClient,
-		ObjectID = mongodb.ObjectID;
+	let MongoClient = mongodb.MongoClient;
 	let message = new MessageClass();
 
 	let log = debug("library:$app/routes/user.routes");
@@ -39,15 +39,34 @@ module.exports = (function() {
 		});
 
 	router.route("/user/login")
-		.post(function(request, response) {
-			response.json(request.body);
-		});
+		.post(passport.authenticate("local", {
+			successRedirect: "/users/user/profile",
+			failureRedirect: "/"
+		}));
 
 	router.route("/user/register")
 		.post(function(request, response) {
-			request.login(request.body, function() {
-				response.redirect("/users/user/profile");
-			});
+			let {username, password} = request.body;
+			(async function() {
+				let client;
+				try {
+					client = await MongoClient.connect(DB_URL);
+					let db = client.db(DB_NAME);
+					let collection = db.collection("users");
+
+					let user = {username, password};
+					let results = await collection.insertOne(user);
+					request.login(results.ops[0], function() {
+						response.redirect("/users/user/profile");
+					});
+				} catch(e) {
+					log(e);
+				} finally {
+					if (typeof client === "object" && client !== null) {
+						client.close();
+					}
+				}
+			})();
 		});
 
 	return router;

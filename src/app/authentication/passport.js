@@ -1,4 +1,4 @@
-module.exports = (function initPassport(app) {
+module.exports = (function(app) {
 	/* @imports */
 	let initPassportLocalStrategy = require("$app/authentication/strategies/local.strategy");
 
