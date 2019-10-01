@@ -28,7 +28,7 @@ module.exports = (function() {
 				try {
 					client = await MongoClient.connect(DB_URL);
 					let db = client.db(DB_NAME);
-					let collection = await db.collection("books");
+					let collection = db.collection("books");
 					let cursor = collection.find();
 
 					let results = await cursor.toArray();
@@ -55,7 +55,7 @@ module.exports = (function() {
 				try {
 					client = await MongoClient.connect(DB_URL);
 					let db = client.db(DB_NAME);
-					let collection = await db.collection("books");
+					let collection = db.collection("books");
 
 					let _id = new ObjectID(id);
 					let result = await collection.findOne({_id});

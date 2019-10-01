@@ -78,7 +78,7 @@ app.get("/", function(request, response) {
 		try {
 			client = await MongoClient.connect(DB_URL);
 			let db = client.db(DB_NAME);
-			let collection = await db.collection("books");
+			let collection = db.collection("books");
 			let cursor = collection.find()
 				.sort({_id: -1})
 				.limit(3);
