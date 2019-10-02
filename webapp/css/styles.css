@@ -31,10 +31,6 @@ dl dt::after {
 	font-weight: 300;
 }
 
-.jumbotron .container {
-	max-width: 40rem;
-}
-
 @media (min-width: 768px) {
 	.bd-placeholder-img-lg {
 		font-size: 3.5rem;

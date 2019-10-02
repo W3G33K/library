@@ -1,14 +1,45 @@
 <%- include partials/common-header.partial.ejs -%>
 <main>
-	<section class="jumbotron text-center">
+	<section class="jumbotron">
 		<div class="container">
-			<h1 class="jumbotron-heading"><%= TagUtils.title(null, true) %></h1>
-			<%- TagUtils.description() %>
-
-			<p>
-				<a href="#" class="btn btn-primary my-2">Manage My Library</a>
-				<a href="#" class="btn btn-secondary my-2">Manage My Account</a>
-			</p>
+			<div class="row">
+				<div class="col-lg-6">
+					<form action="/users/user/login" method="POST">
+						<fieldset>
+							<legend>Login To Your Account</legend>
+							<div class="form-group">
+								<label for="username">Username</label>
+								<input type="text" id="username" name="username" class="form-control"/>
+							</div>
+							<div class="form-group">
+								<label for="password">Password</label>
+								<input type="password" id="password" name="password" class="form-control"/>
+							</div>
+							<div class="form-group mb-0 text-right">
+								<button type="submit" class="btn btn-primary">Login</button>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+				<div class="col-lg-6">
+					<form action="/users/user/register" method="POST">
+						<fieldset>
+							<legend>Register Your Account</legend>
+							<div class="form-group">
+								<label for="username">Username</label>
+								<input type="text" id="username" name="username" class="form-control"/>
+							</div>
+							<div class="form-group">
+								<label for="password">Password</label>
+								<input type="password" id="password" name="password" class="form-control"/>
+							</div>
+							<div class="form-group mb-0 text-right">
+								<button type="submit" class="btn btn-primary">Register</button>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
 		</div>
 	</section>
 
